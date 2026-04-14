@@ -109,7 +109,7 @@ public:
     // If out of range, keep current GPA.
     void setGpa(double g) {
         // YOUR CODE HERE
-        if(g>=0.0 &&g<=4){
+        if(g>=0.0 &&g<=4.0){
             gpa=g;
         }
     }
@@ -121,13 +121,14 @@ public:
     // Hint: loop through each character and use toupper()
     string getFormattedName() const {
         // YOUR CODE HERE
-        string result = name;
-        for(size_t i=0 ;i<result.length();i++){
-            result[i]=
-            static_cast<char>(toupper(static_cast< unsigned char >(result[i])));
+        string temp = name;
+        for(int i=0 ;i<temp.length();i++){
+            temp[i]=toupper(temp[i]);
+            
             
         }
-        return result;
+        return temp;
+
     }
 
     // ----- Task 5: Operator Overloading -----
@@ -156,6 +157,7 @@ public:
     // Example: "Student(Ali, ID: 101, GPA: 3.5)"
     friend ostream& operator<<(ostream& os, const Student& s) {
         // YOUR CODE HERE
+        cout<<"student("<<s.name<<",ID;"<<s.id<<", GPA : "<<s.gpa<<")";
         return os;
     }
 };
@@ -168,7 +170,7 @@ public:
 // Version 1: Takes two Student references, returns the one with higher GPA
 Student findBestStudent(const Student& a, const Student& b) {
     // YOUR CODE HERE
-    if(a.getGpa()>=b.getGpa()){
+    if(b<a){
         return a;
     }
     return b;
@@ -183,7 +185,7 @@ Student findBestStudent(Student arr[], int size) {
     }
     Student best =arr[0];
     for(int i =1 ; i<size ; i++){
-        if(arr[i].getGpa()> best.getGpa() ){
+        if(best<arr[i]){
             best= arr[i];
         }
     }
